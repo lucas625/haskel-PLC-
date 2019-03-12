@@ -30,3 +30,12 @@ maxi x y
  | x >= y = x
  | (x+2) > y = 20
  | otherwise = y
+
+fat :: Int -> Int
+fat x
+ | x < 0 = 0
+ | x == 0 = 1
+ | otherwise = x * fat (x-1)
+
+all4Equal :: Int -> Int -> Int -> Int -> Bool
+all4Equal a b c d = (a == b) && (b == c) && (c == d)
