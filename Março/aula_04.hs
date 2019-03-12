@@ -39,3 +39,10 @@ ehDigito a = (a<='9') && (a>='0')
 --dobra um numero e adiciona 1 a ele
 doubleSmallNumber :: Int -> Int
 doubleSmallNumber a = (if a>100 then a else a*2) + 1
+
+maiorElemento :: [Int] -> Int
+maiorElemento [] = minBound :: Int
+maiorElemento [x] = x
+maiorElemento (x:xs)
+ | x > maiorElemento xs = x
+ | otherwise = maiorElemento xs
