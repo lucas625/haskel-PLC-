@@ -1,3 +1,4 @@
+--12/03
 --Funcao de alta ordem
 --funcoes como argumento
 --o () mostra que o argumento é uma fução
