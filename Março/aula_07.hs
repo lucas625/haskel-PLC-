@@ -66,3 +66,8 @@ filtro f (x:xs)
 
 --devolva x, tal que x pertence a L e x satisfaz a condição f
 filtroCL f l = [ x | x <- l, f x]
+
+--esquerda para a direita (foldr é da direita para esquerda)
+mfoldl:: (t->t->t) -> t -> [t] -> t
+mfoldl f v [] = v
+mfoldl f v (x:xs) = mfoldl f (f v x) xs
