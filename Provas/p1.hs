@@ -30,3 +30,11 @@ reorg f = (\x y -> f y x)
 iter :: Int -> (t -> t) -> (t -> t)
 iter 0 f = id
 iter n f = (iter (n-1) f) . f
+
+data Shape = Circle Float Float Float | Rectangle Float Float Float Float deriving (Show)
+--data é uma maneira de criar os tipos
+--deriving (show) faz ser printado
+--Circle e Rectangle não são tipos, são funções. Shape é um tipo.
+
+data Point = Point Float Float deriving (Show)
+data Shape2 = Circle2 Point Float | Rectangle2 Point Point deriving (Show)
