@@ -12,8 +12,8 @@
 
 --Questao 2
 sublistas :: [a] -> [[a]]
-sublistas [] = []
-sublistas (x:xs) = [x] : sublistas(xs)
+sublistas [] = [[]]
+sublistas (x:xs) = [x:xs | ys <- sublistas xs] ++ sublistas xs
 
 --Questao 3
 --a
@@ -22,5 +22,32 @@ poli a b c = (\x -> a*(x*x) + b*x + c )
 
 --b
 listaPoli :: [(Int, Int, Int)] -> [Int->Int]
-listaPoli [] = []
-listaPoli ((a,b,c):xs) = (poli a b c):(listaPoli xs)
+listaPoli l = [poli a b c | (a,b,c) <- l]--USANDO COMPREENSÃO DE LISTA
+
+listaPoliNormal :: [(Int, Int, Int)] -> [Int->Int]
+listaPoliNormal [] = []
+listaPoliNormal ((a,b,c):xs) = (poli a b c) : listaPoli xs--FAZENDO NORMAL
+
+--c
+appListaPoli :: [Int->Int] -> [Int] -> [Int]
+appListaPoli lp lint = [p i | p <- lp, i <- lint]--USANDO COMPREENSÃO DE LISTA
+
+appListaPoliNormal :: [Int->Int] -> [Int] -> [Int]
+appListaPoliNormal [] _ = []
+appListaPoliNormal _ [] = []
+appListaPoliNormal (x:xs) (a:b) = (x a):(appListaPoliNormal xs b)--FAZENDO NORMAL  
+
+
+--Questao 4
+--a
+sizeList :: [t] -> Int
+sizeList [] = 0
+sizeList (x:xs) = 1 + (sizeList xs)
+
+checkIsMatriz :: [[t]] -> Bool
+checkIsMatriz [] = True
+checkIsMatriz [[]] = True
+checkIsMatriz [[x]] = True
+checkIsMatriz (x:xs)
+ | ((sizeList x) == sizeList (head xs)) = (checkIsMatriz xs)
+ | otherwise = False
