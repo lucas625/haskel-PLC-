@@ -13,7 +13,7 @@
 --Questao 2
 sublistas :: [a] -> [[a]]
 sublistas [] = [[]]
-sublistas (x:xs) = [x:xs | ys <- sublistas xs] ++ sublistas xs
+sublistas (x:xs) = [x:ys | ys <- sublistas xs] ++ sublistas xs
 
 --Questao 3
 --a
